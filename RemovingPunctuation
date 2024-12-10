@@ -1,0 +1,21 @@
+import nltk
+import string
+from tqdm.notebook import tqdm
+from nltk.tokenize import word_tokenize
+
+# Download required NLTK data
+nltk.download('punkt')
+
+# Define the function to remove punctuation
+def remove_punctuation(text):
+    """Removes punctuation from a string."""
+    translator = str.maketrans('', '', string.punctuation)
+    return text.translate(translator)
+
+# Apply the cleaning function to the 'cleaned_prompt' column
+chatprompts['cleaned_prompt_no_punct'] = [
+    remove_punctuation(prompt) for prompt in tqdm(chatprompts['cleaned_prompt'], desc="Removing punctuation")
+]
+
+# Preview the updated dataframe
+chatprompts[['cleaned_prompt', 'cleaned_prompt_no_punct']].head()
