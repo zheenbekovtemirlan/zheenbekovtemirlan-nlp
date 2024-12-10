@@ -1,0 +1,13 @@
+!pip install wordcloud
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud # Import the WordCloud class
+
+# Generate a word cloud for the entire dataset
+text = ' '.join(chatprompts['cleaned_prompt'])
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+plt.figure(figsize=(12, 6))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.title('Word Cloud of Prompts')
+plt.show()
