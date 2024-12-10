@@ -1,0 +1,15 @@
+# Import tqdm for progress tracking
+from tqdm.notebook import tqdm
+
+# Define the function to remove extra whitespace
+def remove_extra_whitespace(text):
+    """Removes leading/trailing whitespace and replaces multiple spaces with single spaces."""
+    text = text.strip()  # Remove leading/trailing whitespace
+    text = " ".join(text.split())  # Replace multiple spaces with a single space
+    return text
+
+# Apply the cleaning function to the 'prompt' column
+chatprompts['cleaned_prompt'] = [remove_extra_whitespace(prompt) for prompt in tqdm(chatprompts['prompt'], desc="Cleaning prompts")]
+
+# Preview the updated dataframe
+chatprompts[['prompt', 'cleaned_prompt']].head()
