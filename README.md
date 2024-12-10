@@ -66,9 +66,9 @@ cd zheenbekovtemirlan-nlp
 
 ## Files
 
-- chatprompts.csv`: The dataset containing the ChatGPT prompts.
-- notebook.ipynb`: The Jupyter notebook containing the full analysis, including data cleaning, feature extraction, and visualization.
-- README.md`: The documentation file explaining the project.
+- chatprompts.csv: The dataset containing the ChatGPT prompts.
+- notebook.ipynb: The Jupyter notebook containing the full analysis, including data cleaning, feature extraction, and visualization.
+- README.md: The documentation file explaining the project.
 
 ## Conclusion
 
