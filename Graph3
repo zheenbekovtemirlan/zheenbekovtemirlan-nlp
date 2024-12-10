@@ -1,0 +1,39 @@
+import pandas as pd
+import nltk
+import matplotlib.pyplot as plt
+from nltk.tokenize import word_tokenize
+from collections import Counter
+from nltk.corpus import stopwords
+
+# Ensure necessary NLTK data is downloaded
+nltk.download('punkt')
+nltk.download('stopwords')
+
+# Assuming 'chatprompts' is already loaded and cleaned
+# Get all words from the cleaned prompts (without punctuation and stopwords)
+all_words = [word for prompt in chatprompts['cleaned_prompt_no_punct'] 
+             for word in word_tokenize(prompt) 
+             if word not in stopwords.words('english')]
+
+# Count the frequency of each word
+word_counts = Counter(all_words)
+
+# Get the frequency of frequencies (how many words have a certain frequency)
+freq_of_freqs = Counter(word_counts.values())
+
+# Convert to DataFrame for easy plotting
+freq_of_freqs_df = pd.DataFrame(freq_of_freqs.items(), columns=['Word Frequency', 'Count'])
+freq_of_freqs_df = freq_of_freqs_df.sort_values(by='Word Frequency')
+
+# Plot the distribution of word frequencies
+plt.figure(figsize=(10, 6))
+plt.plot(freq_of_freqs_df['Word Frequency'], freq_of_freqs_df['Count'], marker='o', color='teal')
+
+# Add titles and labels
+plt.title('Distribution of Word Frequencies Across All Prompts', fontsize=14)
+plt.xlabel('Word Frequency (Number of Occurrences)', fontsize=12)
+plt.ylabel('Number of Words', fontsize=12)
+
+# Display the plot
+plt.tight_layout()
+plt.show()
