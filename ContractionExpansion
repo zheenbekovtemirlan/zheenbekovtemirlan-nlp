@@ -1,0 +1,19 @@
+# Install the contractions library
+!pip install contractions
+
+# Import necessary libraries
+import contractions
+from tqdm.notebook import tqdm
+
+# Define the function to expand contractions
+def expand_contractions(text):
+    """Expands contractions in the text."""
+    return contractions.fix(text)
+
+# Apply the cleaning function to the 'prompt' column
+chatprompts['cleaned_prompt'] = [
+    expand_contractions(prompt) for prompt in tqdm(chatprompts['prompt'], desc="Expanding contractions")
+]
+
+# Preview the updated dataframe
+chatprompts[['prompt', 'cleaned_prompt']].head()
