@@ -1,0 +1,25 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from tqdm.notebook import tqdm
+
+
+# Download NLTK data
+nltk.download('stopwords')
+nltk.download('punkt_tab')
+
+# Define the function to remove stopwords
+def remove_stopwords(text):
+    """Removes stopwords from a string."""
+    stop_words = set(stopwords.words('english'))
+    word_tokens = word_tokenize(text)
+    filtered_sentence = [w for w in word_tokens if not w.lower() in stop_words]  # Remove stopwords
+    return " ".join(filtered_sentence)  # Join the filtered words back into a string
+
+# Apply the cleaning function to the 'cleaned_prompt' column
+chatprompts['cleaned_prompt_no_stopwords'] = [
+    remove_stopwords(prompt) for prompt in tqdm(chatprompts['cleaned_prompt'], desc="Removing stopwords")
+]
+
+# Preview the updated dataframe
+chatprompts[['cleaned_prompt', 'cleaned_prompt_no_stopwords']].head()
