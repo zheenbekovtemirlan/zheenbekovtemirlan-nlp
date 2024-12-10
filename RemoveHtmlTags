@@ -1,0 +1,16 @@
+from bs4 import BeautifulSoup
+from tqdm.notebook import tqdm
+
+# Define the function to remove HTML tags
+def remove_html_tags(text):
+    """Removes HTML tags from the text."""
+    soup = BeautifulSoup(text, "html.parser")
+    return soup.get_text()
+
+# Apply the cleaning function to the 'prompt' column
+chatprompts['cleaned_prompt'] = [
+    remove_html_tags(prompt) for prompt in tqdm(chatprompts['prompt'], desc="Removing HTML tags")
+]
+
+# Preview the updated dataframe
+chatprompts[['prompt', 'cleaned_prompt']].head()
