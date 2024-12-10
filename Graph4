@@ -1,0 +1,15 @@
+# Calculate the word count for each prompt
+chatprompts['word_count'] = chatprompts['cleaned_prompt_no_punct'].apply(lambda x: len(x.split()))
+
+# Scatter plot: Prompt Length vs. Word Count
+plt.figure(figsize=(10, 6))
+plt.scatter(chatprompts['prompt_length'], chatprompts['word_count'], alpha=0.5, color='purple')
+
+# Add titles and labels
+plt.title('Prompt Length vs. Word Count', fontsize=14)
+plt.xlabel('Prompt Length (Number of Characters)', fontsize=12)
+plt.ylabel('Word Count (Number of Words)', fontsize=12)
+
+# Display the plot
+plt.tight_layout()
+plt.show()
