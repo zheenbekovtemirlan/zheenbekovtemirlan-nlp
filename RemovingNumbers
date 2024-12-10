@@ -1,0 +1,15 @@
+from tqdm.notebook import tqdm
+
+# Define the function to remove numbers
+def remove_numbers(text):
+    """Removes numbers from a string."""
+    result = ''.join([i for i in text if not i.isdigit()])
+    return result
+
+# Apply the cleaning function to the 'cleaned_prompt' column
+chatprompts['cleaned_prompt_no_numbers'] = [
+    remove_numbers(prompt) for prompt in tqdm(chatprompts['cleaned_prompt'], desc="Removing numbers")
+]
+
+# Preview the updated dataframe
+chatprompts[['cleaned_prompt', 'cleaned_prompt_no_numbers']].head()
