@@ -1,0 +1,11 @@
+# Import the necessary class
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Keyword Extraction using TF-IDF Vectorizer
+vectorizer = TfidfVectorizer(max_features=50, stop_words='english')
+X = vectorizer.fit_transform(chatprompts['cleaned_prompt'])
+keywords = vectorizer.get_feature_names_out()
+
+# Display the top keywords for each prompt
+chatprompts['keywords'] = [' '.join([keyword for keyword in keywords if X[i, keywords.tolist().index(keyword)] > 0]) for i in range(X.shape[0])]
+chatprompts[['prompt', 'keywords']].head()
