@@ -1,0 +1,4 @@
+import pandas as pd
+
+chatprompts = pd.read_csv("hf://datasets/fka/awesome-chatgpt-prompts/prompts.csv")
+chatprompts.head()
