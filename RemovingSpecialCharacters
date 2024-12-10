@@ -1,0 +1,17 @@
+# Import re for regular expression operations
+import re
+from tqdm.notebook import tqdm
+
+# Define the function to remove special characters
+def remove_special_characters(text):
+    """Removes special characters from the text."""
+    text = re.sub(r"[^a-zA-Z0-9\s]", "", text)  # Remove any non-alphanumeric characters
+    return text
+
+# Apply the cleaning function to the 'prompt' column
+chatprompts['cleaned_prompt'] = [
+    remove_special_characters(prompt) for prompt in tqdm(chatprompts['prompt'], desc="Removing special characters")
+]
+
+# Preview the updated dataframe
+chatprompts[['prompt', 'cleaned_prompt']].head()
