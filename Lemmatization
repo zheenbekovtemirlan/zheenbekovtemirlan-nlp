@@ -1,0 +1,24 @@
+import nltk
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from tqdm.notebook import tqdm
+
+# Download necessary NLTK data
+nltk.download('wordnet')
+nltk.download('punkt')
+
+# Define the function to lemmatize text
+def lemmatize_text(text):
+    """Lemmatizes words in a string."""
+    lemmatizer = WordNetLemmatizer()
+    word_tokens = word_tokenize(text)
+    lemmatized_sentence = [lemmatizer.lemmatize(w) for w in word_tokens]
+    return " ".join(lemmatized_sentence)
+
+# Apply the lemmatization function to the 'cleaned_prompt' column
+chatprompts['cleaned_prompt_lemmatized'] = [
+    lemmatize_text(prompt) for prompt in tqdm(chatprompts['cleaned_prompt'], desc="Lemmatizing")
+]
+
+# Preview the updated dataframe
+chatprompts[['cleaned_prompt', 'cleaned_prompt_lemmatized']].head()
