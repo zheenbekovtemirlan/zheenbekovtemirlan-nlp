@@ -1,0 +1,11 @@
+# Import the seaborn library 
+import seaborn as sns
+
+# Distribution Plot of prompt lengths
+chatprompts['prompt_length'] = chatprompts['cleaned_prompt'].apply(len)
+plt.figure(figsize=(12, 6))
+sns.histplot(chatprompts['prompt_length'], kde=True) # Now sns is defined and can be used
+plt.title('Distribution of Prompt Lengths')
+plt.xlabel('Prompt Length (Number of Characters)')
+plt.ylabel('Frequency')
+plt.show()
