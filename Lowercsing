@@ -1,0 +1,5 @@
+# Text cleaning: convert the 'prompt' column to lowercase
+chatprompts['cleaned_prompt'] = chatprompts['prompt'].apply(lambda x: x.lower())
+
+# Display the first few rows of the dataset
+chatprompts.head()
